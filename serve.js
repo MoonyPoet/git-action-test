@@ -1,0 +1,1 @@
+require('import-global')("serve")

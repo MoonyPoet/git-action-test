@@ -1,0 +1,150 @@
+/*
+ * @Author: xcsweb 
+ * @Date: 2018-06-20 16:17:23 
+ * @Last Modified by: xcsweb
+ * @Last Modified time: 2018-06-22 14:18:54
+ * @meg:验证码组件
+ */
+<template>
+    <div id="captcha" style="position: relative"></div>
+</template>
+<script>
+    import Jigsaw from "./jigsaw.js"
+    import jigsaw from './jigsaw.js';
+    export default {
+        name: 'VerificationCode',
+        data() {
+            return {
+            };
+        },
+        mounted(){
+             jigsaw.init(document.getElementById('captcha'),()=>{
+               this.$emit("code",true)
+             })
+             if(jigsaw.getImageStatus()==false){
+               this.$emit("code",false)
+             }
+             
+        },
+        methods: {
+            submitBtn() {
+             }
+            }
+        };
+</script>
+<style>
+  canvas.block{
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .sliderContainer {
+    position: relative;
+    text-align: center;
+    width: 310px;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 15px;
+    background: #f7f9fa;
+    color: #45494c;
+    border: 1px solid #e4e7eb;
+  }
+  
+  .sliderContainer_active .slider {
+    height: 38px;
+    top: -1px;
+    border: 1px solid #1991FA;
+  }
+  
+  .sliderContainer_active .sliderMask {
+    height: 38px;
+    border-width: 1px;
+  }
+  
+  .sliderContainer_success .slider {
+    height: 38px;
+    top: -1px;
+    border: 1px solid #52CCBA;
+    background-color: #52CCBA !important;
+  }
+  
+  .sliderContainer_success .sliderMask {
+    height: 38px;
+    border: 1px solid #52CCBA;
+    background-color: #D2F4EF;
+  }
+  
+  .sliderContainer_success .sliderIcon {
+    background-position: 0 0 !important;
+  }
+  
+  .sliderContainer_fail .slider {
+    height: 38px;
+    top: -1px;
+    border: 1px solid #f57a7a;
+    background-color: #f57a7a !important;
+  }
+  
+  .sliderContainer_fail .sliderMask {
+    height: 38px;
+    border: 1px solid #f57a7a;
+    background-color: #fce1e1;
+  }
+  
+  .sliderContainer_fail .sliderIcon {
+    background-position: 0 -83px !important;
+  }
+  .sliderContainer_active .sliderText, .sliderContainer_success .sliderText, .sliderContainer_fail .sliderText {
+    display: none;
+  }
+  
+  .sliderMask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 40px;
+    border: 0 solid #1991FA;
+    background: #D1E9FE;
+  }
+  
+  .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background .2s linear;
+  }
+  
+  .slider:hover {
+    background: #1991FA;
+  }
+  
+  .slider:hover .sliderIcon {
+    background-position: 0 -13px;
+  }
+  
+  .sliderIcon {
+    position: absolute;
+    top: 15px;
+    left: 13px;
+    width: 14px;
+    height: 10px;
+    background: url(~public/img/verification_code/icon_light.f13cff3.png) 0 -26px;
+    background-size: 34px 471px;
+  }
+  
+  .refreshIcon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    background: url(~public/img/verification_code/icon_light.f13cff3.png) 0 -437px;
+    background-size: 34px 471px;
+  }
+</style>
